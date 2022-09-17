@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="my-id">
+    <img alt="萝卜" id="inside">
+    <div class="lonely"></div>
+    <div class="outer">
+      <div class="inner"></div>
+    </div>
+  </div>
+</body>
+</html>
+
+<script>
+  let firstArr = document.querySelectorAll("#my-id div div");
+  console.log(firstArr);//NodeList(1)
+  let secondArr = document.querySelector("#my-id").querySelectorAll("div div")
+  console.log(secondArr);//NodeList(3)
+</script>

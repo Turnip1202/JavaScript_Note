@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul id="container">
+    <li class="first">文本1</li>
+    <li class="second">文本2</li>
+    <li>文本3</li>
+    <li id="target">文本4</li>
+    <li>文本5</li>
+    <li>文本6</li>
+  </ul>
+</body>
+</html>
+
+<script>
+  let container = document.querySelector("#container");
+  let newLiOne = document.createElement("li");//创建元素节点
+
+
+  // let newLiAttr = document.createAttribute("class");//创建属性节点
+  // newLiAttr.value = "last";//给属性节点赋值
+  // newLiOne.setAttributeNode(newLiAttr);//将属性节点绑定到元素节点上
+
+  // 属性节点的简洁写法(有兼容性问题)
+  newLiOne.setAttribute("class","last")
+
+  let newTextOne = document.createTextNode("新增文本1");//创建文本节点
+  newLiOne.appendChild(newTextOne);//将文本节点加入到元素节点上
+  container.appendChild(newLiOne);//将完整的节点加入到ul中
+
+
+
+  //创建第二个元素节点
+  let newLiTwo  = document.createElement("li");
+  let newTextTwo = document.createTextNode("新增文本2");
+  newLiTwo.appendChild(newTextTwo);
+  container.insertBefore(newLiTwo,newLiOne)
+  
+</script>

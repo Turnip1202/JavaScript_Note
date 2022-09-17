@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li>
+      <p>姓名：小明</p>
+      <p>学号：20180101</p>
+      <button id="btn">删除</button>
+    </li>
+  </ul>
+  
+</body>
+</html>
+<script>
+  let li = document.querySelector("li");
+  let btn = document.querySelector("#btn")
+  li.addEventListener("click",(event)=>{
+    console.log("单击li，对应的处理")
+  })
+  btn.addEventListener("click",(event)=>{
+    event.stopPropagation();//组织触发li的点击操作
+    console.log("单击button，做对应的处理1");
+  })
+  btn.addEventListener("click",(event)=>{
+    event.stopPropagation();//组织触发li的点击操作
+    console.log("单击button，做对应的处理2");
+  })
+  btn.addEventListener("click",(event)=>{
+    event.stopImmediatePropagation();//阻止冒泡，及后续增添的事件
+    console.log("单击button，做对应的处理3");
+  })
+  btn.addEventListener("click",(event)=>{
+    console.log("单击button，做对应的处理4");
+  })
+</script>

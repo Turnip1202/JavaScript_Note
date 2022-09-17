@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .thumb {
+       height: 80px;
+       border: 1px solid #eee;
+       margin: 10px 5px 0 0;
+     }
+ </style>
+ <script src="./jquery-3.6.1.js"></script>
+ <script src="./030Ajax.解析.js"></script>
+</head>
+<body>
+  <h1>萝卜</h1>
+   <form name = "userForm" id = "userForm">
+    <div class="form-group">
+        <label for="username">用户名</label>
+        <input type="text" class="form-control" name="username" id="username">
+    </div>
+    <div class="form-group">
+      <label for="password">密码</label>
+      <input type="password" class="form-control" name="password" id="password">
+    </div>
+    <div class="form-group">
+      <label for="telphone">电话</label>
+      <input type="text" class="form-control" name="telphone" id="telphone">
+    </div>
+    <div class="text-center">
+      <input type="button" id="submit" value="提交">
+    </div>
+   </form>
+  <div style="width: 320px;margin: 0 auto;border:2px solid skyblue;padding:10px;">
+    <div id="drop_zone" style="border:2px dashed pink;color:#bbb;text-align: center;line-height:76px;">Drop files here</div>
+    <output id="list"></output>
+  </div>
+
+
+
+
+  <!-- <script>
+var buildJSONP = function () {    // 输入参数——学号  
+    var studentNo = 1111;   
+     // 请求参数，其中包含回调函数   
+      var param = 'studentNo=' + studentNo + '&callback=successFn';
+          // 请求的url    
+          var url = 'http://localhost:3000/?'+param;  
+            var script = document.createElement('script');  
+              script.src = url;  
+                document.body.appendChild(script);};
+                buildJSONP();
+  </script> -->
+  <button id="btn">jQuery</button>
+</body>
+</html>
+
+
+
+
+
+
+<script>
+  $("#btn").click(()=>{
+    $.ajax({
+    type:"post",
+    url:"http://127.0.0.1:3000/turnip",
+    contentType:"application/json;charset=UTF-8",
+    data:JSON.stringify({name:"turnip",code:123}),
+    success:function(res){
+      console.log(res)
+    },
+    complete:function(rss){
+      console.log("完成")
+    },
+    error:function(err){
+      console.log("函数执行失败,err:",err)
+    }
+  })
+  })
+
+</script>
+
+
+
+
+

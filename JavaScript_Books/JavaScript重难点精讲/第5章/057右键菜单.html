@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .active{color: red;}
+    #menu{
+      position: relative;
+    }
+    #menu ul{
+      float: left;
+
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li data-id="li1">元素1</li>
+    <li data-id="li2">元素2</li>
+    <li data-id="li3">元素3</li>
+ 
+  </ul>
+  <div id="menu">
+    <ul>
+      <li><a href="#" data-action="edit">菜单1</a></li>
+      <li>菜单2</li>
+      <li>菜单3</li>
+    </ul>
+  </div>
+</body>
+</html>
+<script>
+  let menu = document.querySelector("#menu")
+  let menuState = 0;
+  let active = "active"
+  let menuPosition = null;
+  let menuPositionX = null;
+  let menuPositionY = null;
+  let targetLi = null;
+  function init(){
+    //给元素添加右键事件
+    contextListener();
+    //单击事件，单击后隐藏menu
+    clickListener();
+    //keyup事件，当按下ESC时，隐藏menu
+    keyupListener();
+    //菜单单击事件
+    menuListener();
+  }
+  function contextListener(){
+    document.addEventListener("contextmenu",(event)=>{
+      console.log("contextmenu")
+      if(clickInContextLister(event)){
+        event.preventDefault();
+        targetLi = event.target;
+        //显示自定义菜单
+        toggleMenuOn();
+        //定位自定义菜单的位置
+        positionMenu(event)
+      }else{
+        targetLi = null;
+        //隐藏自定义菜单
+        toggleMenuOff();
+      }
+    })
+  }
+  function clickInContextLister(event){
+    let target = event.target || event.srcElement;
+    while(target){
+      if(target.nodeName.toUpperCase()==="LI"){
+        return true;
+      }
+      target = target.parentNode;
+    }
+    return false;
+  }
+  function clickListener(){
+    document.addEventListener("click",(event)=>{
+      //监听鼠标按键
+      let code = event.which || event.button
+      if(code === 1) toggleMenuOff();//左键隐藏
+    })
+  }
+  function keyupListener(){
+    window.addEventListener("keyup",(event)=>{
+      if(event.keyCode === 27) toggleMenuOff();//ESC案件
+    })
+  }
+  function menuListener(){
+    menu.addEventListener("click",(event)=>{
+      console.log("menuListener")
+      if(event.target.nodeName.toUpperCase()==="A"){
+        let result = "the operation is:"+event.target.dataset.action+"\n"+"the id is:" + targetLi.dataset.id;
+        console.log(result);
+      }
+    })
+  }
+  function toggleMenuOn(){
+    if(menuState !==1) {
+      menuState = 1;
+      menu.classList.add(active);//直接追加class，不是替换
+    }
+  }
+  function toggleMenuOff(){
+    if(menuState !== 0){
+      menuState = 0;
+      menu.classList.remove(active);
+    }
+  }
+  function getPosition(event){
+    let posx = 0;
+    let posy = 0;
+    if(event.pageX || event.pageY){
+      posx = event.pageX;
+      posy = event.pageY;
+    }else if(event.clientX || event.clientY){
+      posx = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft
+      posy = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+    }
+    return {
+      posx,posy
+    }
+  }
+  function positionMenu(event){
+      menuPosition = getPosition(event);
+      menuPositionX = menuPosition.posx + "px"
+      menuPositionY = menuPosition.posy + "px"
+      menu.style.left = menuPositionX;
+      menu.style.top = menuPositionY;
+  }
+  init()
+</script>

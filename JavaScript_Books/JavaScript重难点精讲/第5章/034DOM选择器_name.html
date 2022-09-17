@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li id="one">节点1.1</li>
+    <li name="node">节点1.2</li>
+    <li name="node">节点1.3</li>
+  </ul>
+  <ul>
+    <li name="node">节点2.1</li>
+    <li>节点2.2</li>
+  </ul>
+</body>
+</html>
+
+<script>
+  let el =  document.getElementsByName("node");
+  console.log(el);//NodeList(3)
+</script>

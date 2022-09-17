@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul id="ul">
+    <li id="li">第一个元素</li>
+    <li>第二个元素</li>
+  </ul>
+</body>
+</html>
+<script>
+  let EventUtil = {
+  addEventHandler(element, type, handler) {
+    if (element.addEventListener) {
+      element.addEventListener(type, handler);
+    } else if (element.attachEvent) {
+      element.attachEvent("on" + type, handler)
+    } else {
+      element["on" + type] = handler;
+    }
+  },
+  removeEventListener(element, type, handler) {
+    if (element.removeEventListener) {
+      element.removeEventListener(type, handler)
+    } else if (element.detachEvent) {
+      element.detachEvent("on" + type, handler)
+    } else {
+      element["on" + type] = null
+    }
+  },
+  getEvent(event) {
+    return event || window.event
+  },
+  getTarget(event) {
+    return event.target || event.srcElement;
+  }
+}
+function getTargetAndCurrentTarget(event, stage){
+    let events = EventUtil.getEvent(event);
+    let stageStr = null;
+    if(stage === "bubble") {
+      stageStr = "事件冒泡阶段"
+    }
+    else if(stage === "capture"){
+      stageStr = "事件捕获阶段"
+    } 
+    else {
+      stageStr = "事件目标阶段"
+    }
+    console.log(stageStr, "target:"+events.target.tagName.toLowerCase(),
+    "currentTarget:"+events.currentTarget.tagName.toLowerCase());
+  }
+
+  let ul = document.querySelector("#ul");
+  let li = document.querySelector("#li")
+  ul.addEventListener("click",(event)=>{
+    getTargetAndCurrentTarget(event,"bubble")
+  })
+  li.addEventListener("click",(event)=>{
+    getTargetAndCurrentTarget(event,"bubble")
+  })
+</script>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="alert('面试厅');">单击</button>
+  <button onclick="clickFn()">单击</button>
+  <button class="btn" id="btn" onclick="doClick()">click me</button>
+  <script>
+    function clickFn(){
+      console.log(this);//window
+      alert("面试厅")
+    }
+    const btn = document.getElementById("btn")
+    btn.onclick = ()=>console.log(123)
+    function doClick(){
+      console.log(456)
+    }
+  </script>
+  
+</body>
+</html>

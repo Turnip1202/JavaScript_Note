@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <table>
+    <tbody>
+      <tr>
+        <td>这是一个td元素</td>
+      </tr>
+    </tbody>
+  </table>
+  
+</body>
+</html>
+<script>
+  let EventUtil = {
+  addEventHandler(element, type, handler) {
+    if (element.addEventListener) {
+      element.addEventListener(type, handler);
+    } else if (element.attachEvent) {
+      element.attachEvent("on" + type, handler)
+    } else {
+      element["on" + type] = handler;
+    }
+  },
+  removeEventListener(element, type, handler) {
+    if (element.removeEventListener) {
+      element.removeEventListener(type, handler)
+    } else if (element.detachEvent) {
+      element.detachEvent("on" + type, handler)
+    } else {
+      element["on" + type] = null
+    }
+  },
+  getEvent(event) {
+    return event || window.event
+  },
+  getTarget(event) {
+    return event.target || event.srcElement;
+  }
+}
+  // 严格按照事件的三个阶段进行分析即可
+  //table tr  td tbody
+  let table = document.querySelector("table");
+  let tbody = document.querySelector("tbody")
+  let tr = document.querySelector("tr")
+  let td = document.querySelector("td")
+  function getTargetAndCurrentTarget(event, stage){
+    let events = EventUtil.getEvent(event);
+    let stageStr = null;
+    if(stage === "bubble") {
+      stageStr = "事件冒泡阶段"
+    }
+    else if(stage === "capture"){
+      stageStr = "事件捕获阶段"
+    } 
+    else {
+      stageStr = "事件目标阶段"
+    }
+    console.log(stageStr, "target:"+events.target.tagName.toLowerCase(),
+    "currentTarget:"+events.currentTarget.tagName.toLowerCase());
+  }
+
+  //事件捕获
+  table.addEventListener("click",(event)=>{
+    getTargetAndCurrentTarget(event,"capture");
+  },true);
+
+  //事件捕获
+  tbody.addEventListener("click",(event)=>{
+    getTargetAndCurrentTarget(event,"capture")
+  },true);
+
+  //事件捕获
+  tr.addEventListener("click",(event)=>{
+    getTargetAndCurrentTarget(event, "capture");
+  },true)
+
+  //事件捕获
+  td.addEventListener("click",(event)=>{
+    getTargetAndCurrentTarget(event, "target")
+  },true);
+
+  //事件冒泡
+  table.addEventListener("click",(event)=>{
+    getTargetAndCurrentTarget(event, "bubble")
+  },false)
+
+  //事件冒泡
+  tbody.addEventListener("click",(event)=>{
+    getTargetAndCurrentTarget(event,"bubble")
+  },false)
+
+  //事件冒泡
+  tr.addEventListener("click",(event)=>{
+    getTargetAndCurrentTarget(event,"bubble")
+  },false)
+
+  //事件冒泡
+  td.addEventListener("click",(event)=>{
+    getTargetAndCurrentTarget(event,"target")
+  },false)
+
+
+</script>

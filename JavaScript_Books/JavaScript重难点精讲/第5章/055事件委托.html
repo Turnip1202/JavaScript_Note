@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li>文本1</li>
+    <li>文本2</li>
+    <li>文本3</li>
+    <li>文本4</li>
+    <li>文本5</li>
+    <li>文本6</li>
+    <li>文本7</li>
+    <li>文本8</li>
+    <li>文本9</li>
+  </ul>
+  
+</body>
+</html>
+<script>
+  //利用事件冒泡进行事件委托
+  let parent = document.querySelector("ul")
+  parent.addEventListener("click",(event)=>{
+    let events = event;
+    let target = events.target;
+    if(target.nodeName.toLowerCase()==="li"){
+      console.log(target.innerText)
+    }
+  })
+</script>

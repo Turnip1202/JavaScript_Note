@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  //比较两数字是否相等
+  function numbersCloseEnoughToEqual(n1, n2) {
+    return Math.abs(n1 - n2) < Number.EPSILON;
+  }
+  let res = numbersCloseEnoughToEqual(0.1 + 0.2, 0.3);
+  console.log(res)
+</script>

@@ -1,0 +1,22 @@
+<html>
+  <body>
+    <p id="p">helloworld</p>
+    <button onclick="javascript:myFunction()">hello</button>
+  </body>
+</html>
+<script>
+  function myFunction() {
+    document.write('这下应该会清除了吧？')
+  }
+  var i = 0
+  var el = document.querySelector('p')
+  var arr = []
+  for (;;) {
+    i++
+    arr.push(i)
+    if (i == 10) break
+  }
+  el.innerHTML = arr
+  prompt('输入你的年龄', 18)
+  confirm('你喜欢吃肉吗？')
+</script>

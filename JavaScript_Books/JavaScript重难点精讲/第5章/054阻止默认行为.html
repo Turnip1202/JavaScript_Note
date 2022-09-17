@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="text">
+  <div id="tip"></div>
+
+</body>
+</html>
+
+<script>
+  let text = document.querySelector("#text")
+  let tip = document.querySelector("#tip")
+  text.addEventListener("keypress",(event)=>{
+    let charCode = event.keyCode || event.which || event.charCode;
+    let numberFlag = charCode <= 57 && charCode >= 48;
+    let lowerFlag = charCode <=90 && charCode >= 65;
+    let supperFlag = charCode <= 122 && charCode >=97;
+    if(!numberFlag && !lowerFlag && !supperFlag){
+      event.preventDefault();
+      tip.innerHTML = "只允许输入数字和大小写字母"
+    }
+    let flag = true
+    setTimeout(()=>{
+        tip.innerHTML = ""
+        flag = false
+    },2000)
+  })
+</script>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="parent">
+    <input type="button" id="add" value="新增">
+    <input type="button" id="remove" value="删除">
+    <input type="button" id="update" value="修改">
+    <input type="button" id="search" value="查询">
+  </div>
+
+</body>
+
+</html>
+<script>
+  let EventUtil = {
+  addEventHandler(element, type, handler) {
+    if (element.addEventListener) {
+      element.addEventListener(type, handler);
+    } else if (element.attachEvent) {
+      element.attachEvent("on" + type, handler)
+    } else {
+      element["on" + type] = handler;
+    }
+  },
+  removeEventListener(element, type, handler) {
+    if (element.removeEventListener) {
+      element.removeEventListener(type, handler)
+    } else if (element.detachEvent) {
+      element.detachEvent("on" + type, handler)
+    } else {
+      element["on" + type] = null
+    }
+  },
+  getEvent(event) {
+    return event || window.event
+  },
+  getTarget(event) {
+    return event.target || event.srcElement;
+  }
+}
+  let parent = document.querySelector("#parent")
+  parent.addEventListener("click",(event)=>{
+    let events = EventUtil.getEvent(event)
+    let target  = EventUtil.getTarget(events)
+    switch(target.id){
+      case "add":
+        console.log("新增");
+        break;
+      case "remove":
+        console.log("删除")
+        break
+      case "update":
+        console.log("修改");
+        break;
+      case "search":
+        console.log("查询")
+        break;
+      default:console.log("程序有bug")
+    
+    }
+  })
+</script>

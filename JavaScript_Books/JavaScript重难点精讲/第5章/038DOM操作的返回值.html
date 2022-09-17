@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="main">
+    <p class="first" name="name">first</p>
+    <p class="second" id="name">second <span>content</span></p>
+  </div>
+</body>
+</html>
+<script>
+  // HTMLCollection和NodeList的区别就是后者包含前者
+  const main = document.getElementById("main");
+  console.log(main)
+  console.log(main.children);//HTMLCollection(2)
+  console.log(main.children.item(1));
+  console.log(main.children.namedItem("name"));
+  console.log(main.childNodes);//NodeList(5)
+  console.log(main.childNodes.item(1));
+</script>

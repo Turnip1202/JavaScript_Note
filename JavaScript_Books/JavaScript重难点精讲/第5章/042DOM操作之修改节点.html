@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="main">
+    <!-- 测试修改元素的节点 -->
+    <div id="div1">替换之前的元素</div>
+    <!-- 测试修改属性节点 -->
+    <div id="div2" class="classA" style="color: green;">这是修改属性的节点</div>
+    <!-- 测试修改文本节点 -->
+    <div id="last"></div>
+  </div>
+</body>
+</html>
+<script>
+  // 修改元素节点
+  // 1.获取父元素与待替换的元素
+  let main = document.querySelector("#main");
+  let div1 = document.querySelector("#div1");
+  // 2.创建新元素
+  let newDiv = document.createElement("div")
+  let newText = document.createTextNode("这是新创建的文本节点")
+  newDiv.appendChild(newText);
+  // 3.使用新元素替换旧的元素
+  main.replaceChild(newDiv,div1)
+
+
+  // 修改属性节点
+  let div2 = document.querySelector("#div2");
+  console.log(getComputedStyle(div2).color)
+  //方法1：通过setAttribute设置
+  div2.setAttribute("class","classB");
+  console.log(div2.getAttribute("class")) 
+  //方法2：通过直接修改属性名，注意不能直接使用class，需要使用className‘
+  div2.className = "classC";
+  console.log(div2.getAttribute("class")) 
+  //方法1通过setAttribute函数设置
+  // div2.setAttribute("style","color:red")
+  div2.style.color = "blue"
+
+  //修改文本节点
+  let last = document.querySelector("#last")
+  //直接修改innderHTML属性
+  last.innerHTML = "这是修改后的文本内容";
+  // 如果设置的innerHTML属性值中包含HTML元素，则会被解析
+  //使用如下代码进行验证
+  last.innerHTML = "<p style='color:red'>修改后的内容</p>"
+
+</script>

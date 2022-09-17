@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  (function foo() {
+    'use strict'
+    var undefined = 2;
+    console.log(undefined);
+  }());
+
+  // void 可以让表达式不返回结果
+  let res = setTimeout(() => {
+    console.log('已执行');
+  }, 1000)
+  console.log(typeof res)
+  if (res) {
+    console.log(res)
+  }
+</script>
+
+
+<script>
+  var code = "<script>alert('hello') <\/script>"
+</script>

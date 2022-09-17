@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+
+<script>
+  //手写Number.isInteger();整数检测
+  function t_isInteger(num) {
+    //对数字进行类型检测，1.是数字；2.对1取余为0
+    return typeof num == 'number' && num % 1 == 0;
+  }
+
+  //手写Number.isSafeInteger(); 是否为安全的整数
+  function t_isSageInteger(num) {
+    //将数字转换为整数，同时小于等于最大安全数
+    return Number.isInteger(num) && Math.abs(num) <= Number.MAX_SAFE_INTEGER;
+  }
+
+  //手写Number.isNaN
+  function t_isNaN1(n) {
+    return (
+      typeof n === 'number' && window.isNaN(n)
+    );
+  }
+  // or
+  function t_isNaN2(n) {
+    return n !== n;
+  }
+
+
+  //判断-0 和 0
+  function t_isNegZero(n) {
+    n = Number(n);
+    return (n === 0) && (1 / n === -Infinity)
+  }
+
+  //手写Object.is()
+  function t_is(v1, v2) {
+    //判断是否为-0
+    if (v1 === o && v2 === 0) {
+      return 1 / v1 === 1 / v2;
+    }
+    //判断是否为NaN
+    if (v1 !== v1) {
+      return v2 !== v2;
+    }
+    //其他情况
+    return v1 === v2;
+  }
+
+</script>

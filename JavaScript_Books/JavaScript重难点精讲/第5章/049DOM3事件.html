@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button>自定义事件</button>
+  
+</body>
+</html>
+<script>
+
+  let customEvent = null;
+  (function(){
+    let DOM3 = document.implementation.hasFeature("CustomEvents","3.0");
+    console.log(DOM3)
+    if(DOM3){
+      let detailData = {name:"kingx"};
+      customEvent = document.createEvent("CustomEvent")
+      customEvent.initCustomEvent("myEvent",true,false,detailData);//第二个参数表示是否冒泡
+    }
+  })();
+  const btn = document.querySelector("button");
+  btn.addEventListener("myEvent",e=>console.log("div监听到自定义事件的执行，携带的参数为：",e.detail))
+  btn.addEventListener("click",()=>btn.dispatchEvent(customEvent));
+  document.addEventListener("myEvent",()=>console.log("document监听自定义事件"));//会冒泡
+</script>

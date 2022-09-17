@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <h5>Original</h5>
+    <span>outside span</span>
+    <p>
+      inside paragraph
+      <span>inside span</span>
+      inside paragraph
+    </p>
+  </div>
+</body>
+</html>
+<script>
+  let baseElement = document.querySelector("p");
+  console.log(baseElement.querySelector("div span").innerText);
+  let el = document.querySelectorAll("span");
+  console.log(el);//NodeList(2)
+</script>

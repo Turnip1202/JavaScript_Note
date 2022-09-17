@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <table>
+    <tbody>
+      <tr>
+        <td>这是一个td元素</td>
+      </tr>
+    </tbody>
+  </table>
+  
+</body>
+</html>
+<script>
+  // 严格按照事件的三个阶段进行分析即可
+  //tbody tr td table
+  let table = document.querySelector("table");
+  let tbody = document.querySelector("tbody")
+  let tr = document.querySelector("tr")
+  let td = document.querySelector("td")
+  table.addEventListener("click",()=>console.log("table触发"),false);
+  tbody.addEventListener("click",()=>console.log("tbody触发"),true);
+  tr.addEventListener("click",()=>console.log("tr触发"),true)
+  td.addEventListener("click",()=>console.log("td触发"),false)
+</script>

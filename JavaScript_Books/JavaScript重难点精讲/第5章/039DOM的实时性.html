@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form id="main">
+    <input type="text" id="username">
+    <input type="text" name="password">
+    <input type="text" name="tel">
+  </form>
+</body>
+</html>
+<script>
+  // 处理成数组之后，DOM集合将不具有实时性
+  // 通过querySelectorAll得到的NodeList也不具有实时性
+  let queryEl = document.querySelectorAll("input");
+  console.log("query1",queryEl.length)
+  //获取HTMLCollection
+  let main = document.getElementById("main");
+  let mainChildren = document.getElementById("main").children;
+  console.log("实时性"+mainChildren.length);
+  //新增input元素
+  let newInput = document.createElement("input")
+  main.appendChild(newInput);
+  console.log("实时性"+mainChildren.length)
+  //调用call函数
+  mainChildren = Array.prototype.slice.call(mainChildren,0);
+  mainChildren.splice(1,1)
+  console.log(mainChildren.length);
+  //再新增一个input元素
+  let newInput2 = document.createElement("input");
+  main.appendChild(newInput2)
+  console.log(mainChildren.length);
+  let newInput3 = document.createElement("input");
+  main.appendChild(newInput3)
+  console.log(mainChildren.length);
+  console.log("query2",queryEl.length)
+</script>

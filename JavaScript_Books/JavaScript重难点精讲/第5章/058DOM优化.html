@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul id="list">优化</ul>
+  
+</body>
+</html>
+
+<script>
+  console.time("start1")
+  // let list = document.querySelector("#list");
+  // for(let i = 0; i < 100; i++){
+  //   let li = document.createElement("li");
+  //   let text = document.createTextNode("节点"+i);
+  //   li.append(text);//append可以插入DOM节点和字符串，appendChild则不可以插入字符串
+  //   list.append(li)
+  // }
+ 
+  let list2 = document.querySelector("#list")
+  let fragment = document.createDocumentFragment()
+  for(let i = 0; i < 100; i++){
+    let li = document.createElement("li")
+    let text = document.createTextNode("节点"+i)
+    li.append(text)
+    fragment.append(li)
+  }
+  list2.append(fragment);
+  console.timeEnd("start1");
+</script>
